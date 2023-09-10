@@ -1,8 +1,0 @@
-#!d:\documents\onedrive\onedrive - 南京大学\桌面\new_project\ssi\alpha1\venv1\scripts\python.exe
-# -*- coding: UTF-8 -*-
-from __future__ import print_function, division, absolute_import
-
-from numba.misc.numba_entry import main
-
-if __name__ == "__main__":
-    main()
