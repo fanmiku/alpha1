@@ -39,8 +39,11 @@ def a(waveform_raw, sample_rate_raw): # 2bb8d80b-2369-4775-b4ba-44a927a40f1a
     return torch.from_numpy(augmented_sound), 44100
 
 def b(waveform_raw, sample_rate_raw): # 429e0cf5-6be3-4fce-a573-9ae4455fe499
+    # set params
     limit = 0.5
     is_count = False
+
+    # preprocess
     wave = waveform_raw.numpy()
     augment = Compose([
         AddGaussianNoise(min_amplitude=0.001,max_amplitude=0.003,p=1.0),
@@ -49,6 +52,8 @@ def b(waveform_raw, sample_rate_raw): # 429e0cf5-6be3-4fce-a573-9ae4455fe499
     ])
     wave = augment(wave, sample_rate=16000)
     wavecopy =wave.copy()
+
+    # add reverse window to the outlimit part of the wave
     for point in range(0,wave.shape[1]):
         if abs(wave[0,point]) >= limit and is_count == False:
             is_count =True
